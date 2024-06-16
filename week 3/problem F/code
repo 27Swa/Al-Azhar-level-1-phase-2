@@ -1,0 +1,74 @@
+#include<iostream>
+#include<stack>
+#include<queue>
+#include<string>
+using namespace std;
+int main()
+{
+	int q;
+	cin >> q;
+	deque<int>dq;
+	bool flag = false;
+	for (int i = 0; i < q; i++)
+	{
+		string s;
+		cin >> s;
+		if (flag)
+		{
+			if (s == "back")
+				s = "front";
+
+			else if (s == "front")
+				s = "back";
+			
+			else if (s == "toFront")
+				s = "push_back";
+			
+			else if (s == "push_back")
+				s = "toFront";
+		}
+
+		if (s == "back")
+		{
+			if (dq.empty())
+				cout << "No job for Ada?\n";
+			
+			else
+			{
+				cout << dq.back() << "\n";
+				dq.pop_back();
+			}
+			
+		}
+		else if (s == "front")
+		{
+			if (dq.empty())
+				cout << "No job for Ada?\n";
+
+			else
+			{
+				cout << dq.front() << "\n";
+				dq.pop_front();
+			}
+		}
+		else if (s == "toFront")
+		{
+			int x;
+			cin >> x;
+			dq.push_front(x);
+		}
+		else if (s == "push_back")
+		{
+			int x;
+			cin >> x;
+			dq.push_back(x);
+		}
+		else
+		{
+			flag = flag ^ true;
+		}
+
+	}
+	
+	return 0;
+}
