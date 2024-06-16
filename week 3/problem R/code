@@ -1,0 +1,49 @@
+#include<iostream>
+#include<stack>
+#include<queue>
+#include<string>
+#include<map>
+using namespace std;
+
+int main()
+{
+	int s;
+	cin >> s;
+	vector <int> v(s);
+	vector <int> res(s);
+	stack<int>st;
+	deque<int>dq;
+	for (int i = 0; i < s; i++)
+	{
+		cin >> v[i];
+	}
+
+	for (int i = 0; i < s; i++)
+	{
+		if (st.empty())
+		{
+			st.push(v[i]);
+			dq.push_back(i);
+			continue;
+		}
+		while (!st.empty() && v[i] > st.top())
+		{
+			res[dq[dq.size()-1]] = v[i];
+			dq.pop_back();
+			st.pop();
+		}
+
+		st.push(v[i]);
+		if (i != s - 1)
+			dq.push_back(i);
+
+	}
+	for (int i = 0; i < s; i++)
+	{
+		if (res[i] == 0)
+			cout << -1 << " ";
+		else
+			cout << res[i] << " ";
+	}
+	return 0;
+}
