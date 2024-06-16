@@ -1,0 +1,62 @@
+#include<iostream>
+#include<stack>
+#include<queue>
+#include<string>
+using namespace std;
+int main()
+{
+	int size, op;
+	cin >> size >> op;
+	deque<int>dq;
+	bool reverse = false;
+
+	for (int i = 0; i < size; i++)
+	{
+		int x;
+		cin >> x;
+		dq.push_back(x);
+	}
+
+	for (int i = 0; i < op; i++)
+	{
+		int x;
+		cin >> x;
+		if (x == 1)
+		{
+			reverse = reverse ^ true;
+		}
+		else
+		{
+			int y,z;
+			cin >> y >> z;
+			if (reverse)
+			{
+				if (y == 1)
+					y = 2;
+			
+				else
+					y = 1;
+			}
+			
+			if (y == 1)
+				dq.push_front(z);
+			
+			else
+				dq.push_back(z);
+		}
+	}
+	
+	cout << dq.size() << "\n";
+	if(!reverse)
+	{
+		for (int i = 0; i < dq.size(); i++)
+			cout << dq[i] << " ";
+	}
+	else
+	{
+		for (int i = dq.size()-1; i > -1; i--)
+			cout << dq[i] << " ";
+	}
+
+	return 0;
+}
