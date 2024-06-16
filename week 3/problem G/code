@@ -1,0 +1,64 @@
+#include<iostream>
+#include<stack>
+#include<queue>
+#include<string>
+using namespace std;
+int main()
+{
+	queue<char>m;
+	queue<char>r;
+	queue<char>a;
+	
+	for (int i = 0; i < 3; i++)
+	{
+		string x;
+		cin >> x;
+		for (int j = 0; j < x.size(); j++)
+		{
+			if (i == 0)
+				m.push(x[j]);
+			else if (i == 1)
+				a.push(x[j]);
+			else
+				r.push(x[j]);
+		}
+	}
+
+	char t = m.front();
+	m.pop();
+	while (true)
+	{
+		if (t == 'm')
+		{
+			if (m.empty())
+			{
+				cout << "M";
+				break;
+			}
+			t = m.front();
+			m.pop();
+		}
+		else if (t == 'a')
+		{
+			if (a.empty())
+			{
+				cout << "A";
+				break;
+			}
+
+			t = a.front();
+			a.pop();
+		}
+		else
+		{
+			if (r.empty())
+			{
+				cout << "R";
+				break;
+			}
+			t = r.front();
+			r.pop();
+		}
+	}
+	return 0;
+}
