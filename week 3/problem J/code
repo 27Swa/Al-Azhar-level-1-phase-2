@@ -1,0 +1,49 @@
+#include<iostream>
+#include<stack>
+#include<queue>
+#include<string>
+using namespace std;
+
+int main()
+{	
+	int t;
+	cin >> t;
+	int n, m;
+	
+	for (int i = 0; i < t; i++)
+	{	
+		queue<int>q;
+		priority_queue<int>pq;
+		cin >> n >> m;
+		for (int j = 0; j < n; j++)
+		{
+			int x;
+			cin >> x;
+			q.push(x);
+			pq.push(x);
+		}
+
+		int count = 0;
+		int x = q.size();
+		while (true)
+		{
+			if (q.front() == pq.top())
+			{
+				count++;
+				pq.pop();
+				if (m == 0)
+					break;
+				x--;
+			}
+			else
+			{
+				q.push(q.front());
+			}
+			q.pop();
+			m = (m - 1 + x) % x;
+		}
+		cout << count << "\n";
+
+	}
+	return 0;
+}
