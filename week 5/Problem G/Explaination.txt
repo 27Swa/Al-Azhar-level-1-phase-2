@@ -1,0 +1,29 @@
+idea: Having an array get the maximum size subarray where its sum <= t
+
+Some testcases: 
+    testcase 1:
+        input:  5 5 
+                1 5 2 1 5
+        output: 2
+        // using sorted array the output will be 3 not 2
+    
+    testcase 2:
+        input:  5 5 
+                5 1 1 1 1
+        output: 4
+        // if iterating only 1 the output will be 1 not 4
+    
+naiive solution:
+  for each element calculate its prefix sum (prefix sum is the sum from i = 0 to n - 1)
+  iterate over each element and get its maximum subarray 
+  complexity: O(n^2)
+  will cause time limit exceeded
+
+Best solution:
+  make an array that calculates prefix sum for the given array 
+  for each element get the optimal solution by applying binary search tree on the prefix sum array
+  note:
+    (1)To get the sum from index i to index j --> prefixSum[j]-prefixSum[i-1]
+    (2)Make the prefix sum array size > n (To use it 1 based so when taking the first element in the array prefixSum[i]-prefixSum[0] 
+    (3)Binary search tree:
+        calculating the maximum subarray will be in <= condition as < it must be in the subarray > not 
