@@ -1,0 +1,41 @@
+idea: Having 2 arrays what is the maximum number of times can make array 1 from array 2, there exist number k can take from it to create more times 
+
+some test cases:
+  test case 1:
+      input: 	2 2
+	            1 1 
+	            1 10
+      output: 3
+  
+  test case 2:
+      input:  1 1
+              1
+              1
+      output: 2
+              
+  test case 3:
+      input:  10 1
+              1  2  3  4  5  6  7  8  9  10
+              10 9  8  7  6  5  4  3  2  1
+      output: 0
+
+Steps:
+  (1) Divide array 2 by array 1 for each element and store them in the right data structure
+  (2) Update array 2 to be the reminder of array 1
+  (3) Apply sorting on (1) [suppose a map was used were the key is result of (1) and value is a vector to store the indices with the same result]
+  (4) mitems = minimum value in the map
+  (5) Inside loop until reaching the last value in the map
+         starting from the minimum value in the map 
+          (i) Get the maximum number can make from it using its reminder, its value(which in array 1) and k [assume it is num]
+          (ii) if (mitems + num) >= 2nd minimum value
+                    num = 2nd minimum value - mitems
+                    mitems = 2nd minimum value 
+                    k = k - (num * value)
+  (6) return mitems
+
+Notes:
+  (1) From reminder can make only 1 more with available k
+  (2) Getting the sum for reminders and values is for each value in the key 
+  (3) Getting prefix sum or getting the total sum of array 1 as there can be value in between minimum value and maximum value
+  (4) Each value is greater than x can make x items, but not vice versa
+  (5) Assume the worst case storage to store the sum in a variable (n = 100000 and each value in array 1 = 1000000000)
